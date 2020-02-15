@@ -1,0 +1,308 @@
+// 定義顏色
+$color_blue: #282f44 
+$color_brown: #e6af2e 
+$color_yellow: #f5d061 
+$color_white: #ececec
+// 設置mixin
+@mixin ab_center
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%,-50%)
+  
+@mixin size($w,$h)
+  width: $w
+  height: $h
+// css架構
+*
+  font-family: 'Oswald', '微軟正黑體'
+  // border: solid 1px #000
+// debug
+// header,section#section_about,section#section_service
+//   display: none
+// #section_works
+//   display: block !important
+// ------------------
+html,body
+  width: 100%
+  overflow-x: hidden
+  font-size: 16px
+  // height: 200vh
+  transition: 2s
+  scroll-behavior: smooth
+// 綜合
+section
+  width: 100%
+  height: 100%
+  padding: 60px 0px
+  position: relative
+// 導覽
+nav.navbar
+  transition: 1s
+.navbar.navbar-expand-sm.navbar-light.bg-light.fixed-top.navbar-top.mx-auto
+  background-color: transparent !important
+  & a
+    color: $color_white !important
+    transition: 0.5s !important
+    padding: 0 5px
+    &:hover
+      color: $color_white !important
+      padding: 0 5px
+  & button 
+    // color: $color_white !important
+    // background-color: $color_white
+  
+//   homepage
+header
+  position: relative
+  background-color: $color_blue
+  // text-align: center
+  
+  .icon
+    width: 80%
+    max-width: 250px
+    padding: 250px 0
+    margin: 0 auto
+    display: block
+    
+  .marginbottom
+    position: absolute
+    width: 90%
+    bottom: 0px
+    right: -20px
+    animation: upin 2s both 1
+    
+  @keyframes upin
+    0%
+      bottom: -10px
+    100%
+      bottom: 0px
+    
+  .explore
+    +ab_center
+    font-size: 16px
+    top: 85%
+    color: $color_yellow
+    opacity: 0
+    text-align: center
+    transition: 2s
+    animation: arror 2s both infinite
+    &:after
+      content: '\21E3'
+      display: block
+      transform: scale(1.2)
+    &.at_top
+      opacity: 1
+  @keyframes arror
+    0%,100%
+      bottom: -10px
+    50%
+      bottom: 20px
+    
+//   about
+section#section_about
+  position: relative
+  background-color: $color_brown
+  
+  .container
+    transform: rotate(15deg) scale(0.9)
+  
+  .row
+    height: 150px
+    color: #000
+    
+    & .r1text
+      font-size: 4rem
+      transition: 0.1s
+    & .r2text
+      font-size: 1.5rem
+      transition: 0.2s
+    & .r3text
+      padding: 1em 0
+      font-size: 3rem
+      text-align: right
+      transition: 0.3s
+  .marginbottom
+    position: absolute
+    width: 60%
+    top: calc(100% - 2px)
+    z-index: 10
+  .btn-area
+    height: 150px
+  a
+    +ab_center
+    transform: translate(-50%,-50%) rotate(10deg)
+  .tri
+    transform: rotate(-15deg)
+  .tri1
+    width: 350px
+  .tri2
+    width: 20px
+    margin-left: 20px
+  .tri3
+    width: 150px
+    margin-left: 70%
+  .tri4
+    width: 70px
+    margin-left: 100%
+  .tri5
+    width: 80px
+    margin-left: 100%
+  #cat
+    width: 30%
+    max-width: 300px
+    position: absolute
+    right: -4.5%
+    bottom: -2px
+    transform: translateX(-50%)
+  #cross
+    position: absolute
+    &:before,&:after
+      content: ""
+      display: block
+      width: 60px
+      height: 15px
+      background-color: #fff
+      position: absolute
+      left: 50%
+      top: 50%
+      transform: translate(-50%,-50%) rotate(45deg)
+    &:after
+      transform: translate(-50%,-50%) rotate(136deg)
+    &.hide
+      display: none
+    
+// Service
+section#section_service
+  background-color: $color_white
+  .col-sm-4
+    text-align: center
+  h3
+    color: $color_brown
+  .icon_service
+    width: 60%
+    
+// -------------Works--------------
+section#section_works
+  background-color: $color_white
+  // color: $color_white
+  
+  .marginbottom
+    position: absolute
+    width: 95%
+    height: 100%
+    top: calc(80% - 10px)
+    right: -10%
+    animation: upin 2s both
+    z-index: 5
+
+  .work
+    height: 230px
+    cursor: pointer
+    position: relative
+    padding: 0px
+    margin: 0px
+    overflow: hidden
+    fon-size: 2rem
+    // @media screen and (max-width: 650px)
+    //   height: 200px
+    //   width: 650px
+    &.big
+      height: 460px
+
+    &:before
+      content: ""
+      display: block
+      opacity: 0
+      +ab_center
+      +size(100%,100%)
+      background-color: rgba(#000,0.7)
+      transition: 0.5s
+      z-index: 5
+    .texts
+      +ab_center
+      color: #fff
+      z-index: 8
+      opacity: 0
+      transition: 0.5s
+    &:hover
+      &:before,.texts
+        opacity: 1
+    .title
+      // height: 24px
+      line-height: 24px
+  .work img
+    height: 100%
+    +ab_center
+    @media screen and (max-width: 700px)
+      height: auto
+      width: 110%
+      
+//- Contact
+section#section_contact
+  background-color: $color_blue
+  color: $color_white
+  overflow: hidden
+  padding-top: 5rem
+  
+  .cat
+    width: 150px
+    position: absolute
+    bottom: 0px
+    transition: 0.3s
+  #cat_blue
+    right: 180px
+    z-index: 3
+  #cat_grey
+    right: 50px
+  #cat_yellow
+    right: 120px
+    
+  .mails
+    height: 400px
+    .mailbody
+      background-color: $color_white
+      color: $color_blue
+      padding: 20px
+      padding-left: 40px
+      position: absolute
+      width: 100%
+      transform: translateX(-30px)
+    .mailcover
+      +ab_center
+      top: 70%
+      transform: rotate(10deg) scale(2) translate(-50%,-50%)
+      // z-index: -1
+      img 
+        width: 120%
+      
+  input,textarea
+    display: block
+    background-color: transparent
+  input
+    width: 100%
+    border: none
+    border-bottom: solid 3px $color_blue
+    outline: none
+  textarea
+    border: solid 3px $color_blue
+    width: 100%
+    height: 140px
+  .btn.btn-primary
+    color: $color_white
+    border-bottom: solid 0px $color_blue
+    float: right
+    width: 30%
+    background-color: $color_blue
+    margin-top: 5px
+    
+// footer
+footer
+  position: relative
+  background-color: $color_brown
+  text-align: center
+  
+  .icon
+    width: 80%
+    max-width: 250px
+    padding: 80px 0px
